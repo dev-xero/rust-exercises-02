@@ -6,7 +6,7 @@ Exercises at the end of chapter 08 of the 'Rust Programming Language' book
 The algorithms are implemented using their simple standard definitions.
 
     ```rust
-    // src/stats/mod.rs
+    // src/stats.rs
     
     pub fn median(list: &Vec<i32>) -> i32 {
         let size = list.len();
@@ -27,7 +27,7 @@ The algorithms are implemented using their simple standard definitions.
     ```
     
     ```rust
-    // src/stats/mod.rs
+    // src/stats.rs
     
     pub fn mode(list: &Vec<i32>) -> i32 {
         use std::collections::HashMap;
@@ -53,3 +53,51 @@ The algorithms are implemented using their simple standard definitions.
         return mode;
     }
     ```
+
+2. Word to Pig Latin  
+   "The first consonant of each word is moved to the end of the word and “ay” is added, so “first” becomes “irst-fay.” Words that start with a         vowel have “hay” added to the end instead (“apple” becomes “apple-hay”)"
+
+   ```rust
+   // src/pig_latin.rs
+   
+   pub fn convert(word: &str) -> String {
+       if word.len() == 0 {
+           panic!("A word to convert must be supplied");
+       }
+        
+        
+       let mut pig_latin_word = String::new();
+       let mut is_vowel = false;
+       let first_char = word.chars().nth(0);
+       let vowels = "aeiou";
+        
+       if let Some(first) = first_char {
+           if vowels.contains(first) {
+               is_vowel = true;
+           }
+        }
+        
+        let new_first_char = word
+            .chars()
+            .nth(1)
+            .expect("Should contain at least one char")
+            .to_ascii_uppercase();
+        
+        pig_latin_word.push(new_first_char);
+        pig_latin_word.push_str(&word[2..]);
+        
+        let first_char = first_char
+            .expect("Should contain at least one char")
+            .to_ascii_lowercase();
+        
+        if is_vowel {
+            pig_latin_word.push_str("-hay");
+        }  else {
+            pig_latin_word.push('-');
+            pig_latin_word.push(first_char);
+            pig_latin_word.push_str("ay")
+        }
+        
+        return pig_latin_word
+   }
+   ```
