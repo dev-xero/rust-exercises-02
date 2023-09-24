@@ -2,7 +2,49 @@
 Exercises at the end of chapter 08 of the 'Rust Programming Language' book
 
 ## Solutions
-1. Median & Mode  
+1. Shift Cipher (Extra)  
+The shift cipher is a simple cryptographic algorithm that operates on the principle of shifting the letters in a word by a specified number of times. It doesn't handle uppercase and non-Latin letters yet.
+    ```rust
+    // src/shift_cipher.rs
+    
+    pub fn encrypt(word: &str, shift: usize) -> String {
+        fn encrypt_char(letter: char, shift: usize) -> char {
+            let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    
+            match alphabet.find(letter) {
+                Some(word_index) => {
+                    let shift_index = (word_index + shift) % 26;
+                    let shifted_char = alphabet.chars().nth(shift_index).unwrap();
+    
+                    return shifted_char;
+                },
+                None => {
+                    panic!("Invalid char '{}' encountered", letter);
+                }
+            }
+        }
+    
+        fn encrypt_num(num: char, shift: usize) -> char {
+            let i_num = num.to_digit(10);
+    
+            match i_num {
+                Some(digit) => {
+                    let shifted_num = (digit + (shift as u32)) % 10;
+    
+                    return char::from_digit(shifted_num, 10)
+                        .expect("Failed to convert digit to char");
+                },
+                None => {
+                    panic!("Char '{}' cannot be converted to a digit", num);
+                }
+            }
+        }
+    
+        // -- [rest of implementation in code] --
+    }
+    ```
+
+2. Median & Mode  
 The algorithms are implemented using their simple standard definitions.
 
     ```rust
@@ -54,7 +96,7 @@ The algorithms are implemented using their simple standard definitions.
     }
     ```
 
-2. Word to Pig Latin  
+3. Word to Pig Latin  
    "The first consonant of each word is moved to the end of the word and “ay” is added, so “first” becomes “irst-fay.” Words that start with a         vowel have “hay” added to the end instead (“apple” becomes “apple-hay”)"
 
    ```rust
