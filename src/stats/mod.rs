@@ -14,3 +14,27 @@ pub fn median(list: &Vec<i32>) -> i32 {
         (sorted_list[mid - 1] + sorted_list[mid]) / 2
     }
 }
+
+pub fn mode(list: &Vec<i32>) -> i32 {
+    use std::collections::HashMap;
+
+    let mut num_count: HashMap<i32, i32> = HashMap::new();
+    let size = list.len();
+
+    if size == 0 { panic!("Cannot find mode of an empty list"); }
+
+    let mut mode = -1;
+    let mut max_count = 0;
+
+    for num in list {
+        let count = num_count.entry(*num).or_insert(0);
+        *count += 1;
+
+        if *count > max_count {
+            max_count = *count;
+            mode = *num;
+        }
+    }
+
+    return mode;
+}
