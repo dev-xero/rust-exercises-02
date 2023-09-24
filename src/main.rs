@@ -1,9 +1,6 @@
 mod stats;
 
-fn main() {
-    println!("Exercise 02");
-    println!("");
-
+fn test_median() {
     println!("Median of a set of numbers");
     println!("---");
 
@@ -18,4 +15,11 @@ fn main() {
     
     println!("ODD: {:?}", odd_numbered_list);
     println!("The median is: {}", median_of_odd);
+}
+
+fn main() {
+    println!("Exercise 02");
+    println!("");
+
+    test_median();
 }
