@@ -42,6 +42,8 @@ fn main() {
 
     test_median();
     test_mode();
-    test_pig_latin(&"apple");
-    test_pig_latin(&"first");
+    test_pig_latin(&"Apple");
+    test_pig_latin(&"First");
+    test_pig_latin(&"Hello");
+    test_pig_latin(&"World");
 }
