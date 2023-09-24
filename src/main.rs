@@ -1,4 +1,5 @@
 mod stats;
+mod pig_latin;
 
 fn test_median() {
     println!("\nMedian of a set of numbers");
@@ -28,9 +29,19 @@ fn test_mode() {
     println!("The mode is: {}", mode);
 }
 
+fn test_pig_latin(word: &str) {
+    println!("\nConvert \"{word}\" to Pig Latin");
+    println!("---");
+    
+    let converted_word = pig_latin::convert(word);
+    println!("{}", converted_word);
+}
+
 fn main() {
     println!("Exercise 02");
 
     test_median();
     test_mode();
+    test_pig_latin(&"apple");
+    test_pig_latin(&"first");
 }
