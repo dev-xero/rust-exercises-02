@@ -1,5 +1,6 @@
 mod stats;
 mod pig_latin;
+mod shift_cipher;
 
 fn test_median() {
     println!("\nMedian of a set of numbers");
