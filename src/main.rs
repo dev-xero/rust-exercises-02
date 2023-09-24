@@ -38,13 +38,26 @@ fn test_pig_latin(word: &str) {
     println!("{}", converted_word);
 }
 
+fn test_shift_cipher(word: &str, shift: usize) {
+    println!("\nEncrypt \"{word}\" - shift {shift}");
+    println!("---");
+    
+    let encrypted_text = shift_cipher::encrypt(word, shift);
+    println!("{}", encrypted_text);
+}
+
 fn main() {
     println!("Exercise 02");
 
     test_median();
     test_mode();
+
     test_pig_latin(&"Apple");
     test_pig_latin(&"First");
     test_pig_latin(&"Hello");
     test_pig_latin(&"World");
+
+    test_shift_cipher(&"password7", 8);
+    test_shift_cipher(&"000rust", 7);
+    test_shift_cipher(&"cipher", 4);
 }
